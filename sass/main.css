@@ -1,0 +1,46 @@
+header nav {
+  padding: 0 !important;
+}
+header nav .container-fluid {
+  display: flex;
+  justify-content: space-around;
+  background-color: #000;
+  padding: 10px;
+}
+header nav .container-fluid .navbar-toggler {
+  background-color: #ccc;
+}
+header nav .container-fluid .navbar-brand {
+  margin-left: 20px;
+  color: #fff;
+  font-size: 30px;
+  font-family: "Fjalla One", sans-serif;
+}
+header nav .container-fluid .navbar-brand span {
+  font-family: "Fjalla One", sans-serif;
+  color: #dd0000;
+  font-size: 35px;
+}
+header nav .container-fluid .navbar-nav .nav-item .nav-link {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.7333333333);
+  font-family: "Fjalla One", sans-serif;
+  transition: all 1s;
+  padding-bottom: 0;
+  margin: 0 5px;
+}
+header nav .container-fluid .navbar-nav .nav-item .nav-link:hover {
+  color: #dd0000;
+  border-bottom: #dd0000 1px solid;
+}
+header nav .container-fluid .nav-logo img {
+  border-radius: 50%;
+  height: 100px;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}/*# sourceMappingURL=main.css.map */
