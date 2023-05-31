@@ -5,70 +5,89 @@ function saludar (){
     );
 }
 
-function despedir (){
-    if (precioTotal !==0){
-        alert("El monto total a pagar es de "+ precioTotal)
+class sneaker {
+    constructor(marca, precio, talle){
+        this.marca =marca;
+        this.precio =precio;
+        this.talle =talle;
     }
-    alert ("Muchas gracias por su compra");
 }
 
-function comprarProducto (){
-    producto = prompt( "Elija la marca de zapatillas que quiere saber el precio \n 1: Nike \n 2: Adidas \n 3: Puma")
+let arrayCarrito = []
 
-    if(producto ==="1"){
-        alert("Elegiste la marca de zapatillas Nike, el valor es de "+ zapatillaNike);
-        compra = prompt("Desea agregarlo al carro? \n 1: Si \n 2: No")
-        if(compra ==="1"){
-            precioTotal= precioTotal+zapatillaNike
-            compra=0
-        } else if(compra ==="2"){
-            compra=0
-        }
-    } else if (producto ==="2"){
-        alert("Elegiste la marca de zapatillas Adidas, El valor es de "+ zapatillaAdidas);
-        compra = prompt("Desea agregarlo al carro? \n 1: Si \n 2: No")
-        if(compra ==="1"){
-            precioTotal= precioTotal+zapatillaAdidas
-            compra=0
-        } else if(compra ==="2"){
-            compra=0
-        }
-    } else if (producto ==="3"){
-        alert("Elegiste la marca de zapatillas Puma, El valor es de "+ zapatillaPuma);
-        compra = prompt("Desea agregarlo al carro? \n 1: Si \n 2: No")
-        if(compra ==="1"){
-            precioTotal= precioTotal+zapatillaPuma
-            compra=0
-        } else if(compra ==="2"){
-            compra=0
-        }
+let stock = [
+    {marca: "Nike", precio: 43000},
+    {marca: "Adidas", precio: 39500},
+    {marca: "Puma", precio: 35000},
+    {marca: "Jordan", precio: 49000},
+    {marca: "Fila", precio: 38000}
+]
+
+let tallesValidos = ["35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45"]
+
+function verStock(){
+    stock.forEach((sneaker)=>{
+        alert(`Marca: ${sneaker.marca} - Precio ${sneaker.precio}`)
+    });
+    alert("La curva de talles va del 35 al 45")
+}
+
+function agregarProducto(){
+    let marca = prompt("ingrese la marca de las zapatillas que desees; Nike, Adidas, Puma, Jordan o Fila");
+    let talle = prompt("ingrese el talle");
+    if (!tallesValidos.includes(talle)){
+        alert("Talle invalido. Recuerde que los talles van del 35 al 45");
+        return;
     }
-
-    opcion = prompt("Elija otra opcion: \n 1: Seguir comprando \n 2: Mostrar precio actual \n 3: Terminar compra")
+    let stockExistente = stock.find(sneaker => sneaker.marca === marca)
+    
+    if(stockExistente){
+        const nuevoSneaker = new sneaker (marca, stockExistente.precio, talle)
+        arrayCarrito.push(nuevoSneaker);
+        alert("Su producto fue añadido al carrito");
+    } else{
+        alert("Su producto elegido no se ha encontrado, por favor revise si lo ha escrito correctamente,")
+    }
 }
 
-function mostrarPrecio (){
-    alert("El precio total es de "+ precioTotal)
+arrayCarrito.forEach((producto)=>(
+    alert (`usted eligio unos Sneaker ${producto.marca} por un precio de ${producto.precio} en el talle ${producto.talle}`)
+))
+
+function verCarrito(){
+    if (arrayCarrito.length === 0){
+        alert("El carrito esta vacio");
+    } else {
+        arrayCarrito.forEach((producto)=>(alert (`usted eligio unos Sneaker ${producto.marca} por un precio de ${producto.precio} en el talle ${producto.talle}`)
+        ));
+    }
 }
 
-let compra;
-let precioTotal=0;
-let producto;
-let zapatillaNike=43000;
-let zapatillaAdidas=39500;
-let zapatillaPuma=35000;
+function finalizarCompra(){
+    const total = arrayCarrito.reduce((acc,pr)=>acc + pr.precio, 0);
+    alert ("Gracias por su compra, el total a pagar es de: "+ total)
+}
+
 
 saludar ();
-let opcion = prompt("Ingrese que opcion quiere realizar: \n 1: Comprar zapatillas \n 2: Mostrar precio final \n 3: Terminar compra")
 
-while(opcion !=="3"){
+let opcion = prompt( "ingrese una opcion: \n 1: Ver stock \n 2: Comprar producto \n 3: Ver carrito")
+
+while(opcion !=="5"){
     if (opcion==="1"){
-        comprarProducto ();
+        verStock ();
+        opcion=prompt ("Elija otra opcion: \n 2: Agregar producto \n 3: Ver carrito \n 4: Terminar compra");
     }
     if (opcion==="2"){
-        mostrarPrecio ()
-        opcion=prompt ("Elija otra opcion: \n 1: Seguir comprando \n 3: Terminar compra");
-    }   
+        agregarProducto ();
+        opcion=prompt ("Elija otra opcion: \n 1: Ver stock \n 2: Seguir comprando \n 3: Ver carrito \n 4: Terminar compra");
+    }
+    if (opcion==="3"){
+        verCarrito ();
+        opcion=prompt ("Elija otra opcion: \n 1: Ver stock \n 2: Agregar producto \n 4: Terminar compra");
+    }
+    if (opcion==="4"){
+        finalizarCompra ();
+        opcion = "5";
+    }
 }
-
-despedir ();
