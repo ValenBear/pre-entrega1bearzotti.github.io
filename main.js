@@ -46,7 +46,7 @@ function agregarProducto(){
         arrayCarrito.push(nuevoSneaker);
         alert("Su producto fue añadido al carrito");
     } else{
-        alert("Su producto elegido no se ha encontrado, por favor revise si lo ha escrito correctamente,")
+        alert("Su producto elegido no se ha encontrado, por favor revise si lo ha escrito correctamente.")
     }
 }
 
@@ -64,8 +64,13 @@ function verCarrito(){
 }
 
 function finalizarCompra(){
-    const total = arrayCarrito.reduce((acc,pr)=>acc + pr.precio, 0);
+    if (arrayCarrito.length === 0) {
+        alert("Muchas gracias por visitar nuestra pagina")
+    }
+    else{
+        const total = arrayCarrito.reduce((fdc,precioFinal)=>fdc + precioFinal.precio, 0);
     alert ("Gracias por su compra, el total a pagar es de: "+ total)
+    }
 }
 
 
@@ -89,5 +94,9 @@ while(opcion !=="5"){
     if (opcion==="4"){
         finalizarCompra ();
         opcion = "5";
+    }
+    if (opcion>5){
+        alert("Caracter invalido, vuelva a intentar")
+        opcion=prompt( "ingrese una opcion: \n 1: Ver stock \n 2: Comprar producto \n 3: Ver carrito \n 4: Terminar compra")
     }
 }
