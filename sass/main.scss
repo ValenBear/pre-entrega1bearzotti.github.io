@@ -1,8 +1,69 @@
-@import "header";
-
 *{
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     margin: 0;
     padding: 0;
+}
+
+header{
+    nav{
+        padding: 0 !important;
+        .container-fluid{
+            display: flex;
+            justify-content: space-around;
+            background-color: #000;
+            padding: 10px;
+            .navbar-toggler{
+                background-color: #ccc;
+            }
+            .navbar-brand{
+                margin-left: 20px;
+                color: #fff;
+                font-size: 30px;
+                font-family: 'Fjalla One', sans-serif;
+                span{
+                    font-family: 'Fjalla One', sans-serif;
+                    color: #dd0000;
+                    font-size: 35px;
+                }
+            }
+            .navbar-nav{
+                .nav-item{
+                    .nav-link{
+                        font-size: 20px;
+                        color: #ffffffbb;
+                        font-family: 'Fjalla One', sans-serif;
+                        transition: all 1s;
+                        padding-bottom: 0;
+                        margin: 0 5px;
+                        &:hover{
+                            color: #dd0000;
+                            border-bottom: #dd0000 1px solid;
+                        }
+                    }
+                }
+            }
+            .nav-logo{
+                .logo-img{
+                    border-radius: 50%;
+                    height: 100px;
+                }
+            }
+        }
+    }
+}
+
+main{
+    .div-productos{
+        display: grid;
+        grid-template-columns: 18rem 18rem 18rem 18rem;
+        justify-content: center;
+        align-items: center;
+        margin: 4rem 8rem;
+        width: auto;
+        gap: 5rem;
+        .card{
+            
+        }
+    }
 }

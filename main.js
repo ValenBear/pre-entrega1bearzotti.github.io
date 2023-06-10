@@ -16,11 +16,13 @@ class sneaker {
 let arrayCarrito = []
 
 let stock = [
-    {marca: "Nike", precio: 43000},
-    {marca: "Adidas", precio: 39500},
-    {marca: "Puma", precio: 35000},
-    {marca: "Jordan", precio: 49000},
-    {marca: "Fila", precio: 38000}
+    {marca: "nikeAirForce1", precio: 73700},
+    {marca: "nikeAirMax90Futura", precio: 80000},
+    {marca: "adidasSuperstar", precio: 40900},
+    {marca: "pumaSlipstream", precio: 55000},
+    {marca: "vansSk8Hi", precio: 43000},
+    {marca: "jordanAirXXXVII", precio: 110000},
+    {marca: "filaAcdMid", precio: 41000}
 ]
 
 let tallesValidos = ["35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45"]
