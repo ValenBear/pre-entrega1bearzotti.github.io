@@ -45,6 +45,112 @@ header nav .container-fluid .nav-logo .logo-img {
   height: 100px;
 }
 
+.btn {
+  font-family: "Fjalla One", sans-serif !important;
+}
+
+main .cart {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 20px;
+  background-color: rgba(247, 42, 42, 0.6117647059);
+  align-content: center;
+}
+main .cart .cart-seguircomprando h4 {
+  color: #fff;
+  font-size: 35px;
+  width: 100%;
+  text-align: center;
+}
+main .cart .cart-seguircomprando h3 {
+  color: #fff;
+  font-size: 30px;
+  width: 100%;
+  text-align: center;
+}
+main .cart .cart-seguircomprando .cart-boton-seguircomprando {
+  display: flex;
+  justify-content: center;
+}
+main .cart .cart-comprafinalizada form div label {
+  color: #fff !important;
+  font-size: 19px;
+}
+main .cart .cart-comprafinalizada h4 {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+  font-family: "Fjalla One", sans-serif;
+  margin-bottom: 20px;
+}
+main .cart .cart-preciototal {
+  text-align: center;
+  color: #fff;
+  text-shadow: #000 -0.9px 0.9px;
+  font-family: "Fjalla One", sans-serif;
+}
+main .cart .cart-vaciarcarrito {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+main .cart .cart-finalizarcompra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+main .cart .cart-finalizarcompra .boton-finalizarcompra {
+  height: 50;
+  font-size: 19.5px;
+}
+main .cart .carrito-vacio {
+  margin-top: 20px;
+  text-align: center;
+  color: #fff;
+}
+main .cart .carrito-dom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .cart .carrito-dom .carrito-dom-titulo {
+  color: #fff;
+  font-size: 30px;
+  font-family: "Fjalla One", sans-serif;
+}
+main .cart .carrito-dom .carrito-dom-logo {
+  width: 50px;
+  margin-right: 10px;
+}
+main .cart .carrito-container {
+  justify-content: space-evenly;
+  align-items: center;
+  color: #fff;
+}
+main .cart .carrito-container .carrito-producto {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+main .cart .carrito-container .carrito-producto .carrito-producto-imagen {
+  width: 10rem;
+  height: auto;
+  border: 2.75px solid #dc3545;
+}
+main .cart .carrito-container .carrito-producto .carrito-producto-descripcion {
+  height: auto;
+  border-radius: 0.375rem;
+  border: 1.5px solid #dc3545;
+  padding: 0.375rem 0.75rem;
+}
+main .cart .carrito-container .carrito-producto .carrito-producto-descripcion:hover {
+  background-color: #bb2d3b;
+  border-color: #bb2d3b;
+}
 main .div-productos {
   display: grid;
   grid-template-columns: 18rem 18rem 18rem 18rem;
