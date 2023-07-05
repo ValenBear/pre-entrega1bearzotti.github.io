@@ -1,102 +1,4 @@
 
-let stock = [
-    {
-        id: 1,
-        nombre:"Nike Air Force 1",
-        marca:"Nike",
-        precio:"$73.700",
-        precioReal:73700,
-        imagen:"./imagenes/zapatilla-nike-airforce1.jpeg",
-    },
-    {
-        id: 2,
-        nombre:"Nike Air Max 90 Futura",
-        marca:"Nike",
-        precio:"$80.000",
-        precioReal:80000,
-        imagen:"./imagenes/zapatilla-nike-airmax90.jpeg",
-    },
-    {
-        id: 3,
-        nombre:"Jordan Air XXXVII",
-        marca:"Jordan",
-        precio:"$110.000",
-        precioReal:110000,
-        imagen:"./imagenes/zapatilla-jordan-airxxxvii.jpeg",
-    },
-    {
-        id: 4,
-        nombre:"Jordan Air 4 Retro",
-        marca:"Jordan",
-        precio:"$126.500",
-        precioReal:126500,
-        imagen:"./imagenes/zapatilla-jordan-air4retro.jpeg",
-    },
-    {
-        id: 5,
-        nombre:"Adidas Superstar",
-        marca:"Adidas",
-        precio:"$40.900",
-        precioReal:40900,
-        imagen:"./imagenes/zapatilla-adidas-superstar.jpeg",
-    },
-    {
-        id: 6,
-        nombre:"Adidas Ozelia",
-        marca:"Adidas",
-        precio:"$37.200",
-        precioReal:37200,
-        imagen:"./imagenes/zapatilla-adidas-ozelia.jpeg",
-    },
-    {
-        id: 7,
-        nombre:"Puma Slipstream",
-        marca:"Puma",
-        precio:"$55.000",
-        precioReal:55000,
-        imagen:"./imagenes/zapatilla-puma-slipstream.jpeg",
-    },
-    {
-        id: 8,
-        nombre:"Puma Rs-X Triple",
-        marca:"Puma",
-        precio:"$47.700",
-        precioReal:47700,
-        imagen: "./imagenes/zapatilla-puma-rsxtriple.jpeg",
-    },
-    {
-        id: 9,
-        nombre:"Vans Sk8 Hi",
-        marca:"Vans",
-        precio:"$43.000",
-        precioReal:43000,
-        imagen: "./imagenes/zapatilla-vans-sk8hi.jpeg",
-    },
-    {
-        id: 10,
-        nombre:"Vans Old Skool",
-        marca:"Vans",
-        precio:"$46.400",
-        precioReal:46400,
-        imagen:"./imagenes/zapatilla-vans-oldskool.jpeg",
-    },
-    {
-        id: 11,
-        nombre:"Fila Acd Mid",
-        marca:"Fila",
-        precio:"$41.000",
-        precioReal:41000,
-        imagen: "./imagenes/zapatilla-fila-acdmid.jpeg",
-    },
-    {
-        id: 12,
-        nombre:"Fila Oakmont Sl",
-        marca:"Fila",
-        precio:"$31.500",
-        precioReal:31500,
-        imagen: "./imagenes/zapatilla-fila-oakmontsl.jpeg",
-    },
-]
 
 let carritoDom = document.getElementById("cart");
 
@@ -200,6 +102,10 @@ const vaciarCarrito = () => {
 }
 
 const finalizarCompra = (carrito) => {
+  Swal.fire(
+    'Ya casi!',
+    'Complete el formulario para terminar la compra',
+  )
     carritoDom.innerHTML = `
     <div class="cart-comprafinalizada">
     <h4>Terminaste la compra</h4>
@@ -272,6 +178,35 @@ const finalizarCompra = (carrito) => {
     formulario.addEventListener("submit", guardarDatosFormulario);
 }
 
+const obtenerCotizacion = (event) => {
+  event.preventDefault();
+  const dolarACotizar = document.getElementById("dolar-a-cotizar").value;
+
+  fetch('https://api.exchangerate-api.com/v4/latest/USD')
+  .then(response => response.json())
+  .then(data => {
+    const cotizacion = data.rates.ARS;
+    const dolarACotizar = document.getElementById("dolar-a-cotizar").value;
+    const resultado = dolarACotizar * cotizacion;
+    document.getElementById('dolarResultado').textContent = `La cotización de ${dolarACotizar} dólares a pesos argentinos es: ${resultado}ARS`;
+  })
+  .catch(error => {
+    document.getElementById('dolarResultado').textContent = 'Ocurrió un error al obtener la cotización.';
+    console.log('Ocurrió un error al obtener la cotización:', error);
+  });
+}
+
+
+
+  const formDolar = document.getElementById("form-dolar")
+  formDolar.innerHTML = `
+  <h4>Quieres saber la cotizacion de USD a ARS?</h4>
+  <input type="number" id="dolar-a-cotizar" placeholder="Valor a cotizar...">
+  <button onclick="obtenerCotizacion(event)" class="btn btn-danger">Obtener Cotizacion</button>
+  <p id="dolarResultado"></p>`;
+
+
+
 const guardarDatosFormulario = (event) => {
     event.preventDefault();
 
@@ -292,12 +227,15 @@ const guardarDatosFormulario = (event) => {
     };
 
     localStorage.setItem("datosFormulario", JSON.stringify(datosFormulario));
+    Swal.fire(
+      'Compra finalizada!',
+      `Muchas gracias ${datosFormulario.nombre} por comprar en BearSneakers`,
+      'success'
+    )
     carrito = []
     actualizarStorage(carrito);
     carritoDom.innerHTML = `
     <div class="cart-seguircomprando">
-    <h4> La compra ha sido finalizada</h4>
-    <h3> Muchas gracias ${datosFormulario.nombre} por comprar en BearSneakers </h3>
     <div class="cart-boton-seguircomprando">
     <button class="btn btn-danger" onClick="dibujarCarrito()">Seguir comprando</button>
     </div>
@@ -316,8 +254,6 @@ stock.forEach((producto, indice) => {
     </div>`;
   contenedorProductos.appendChild(card);
 });
-
-
 
 
 let carrito = [];
